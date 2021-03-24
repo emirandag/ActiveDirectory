@@ -1,12 +1,15 @@
 const express = require("express");
-const AD = require("ad");
+//const AD = require("ad");
 const app = express();
+const bodyParser = require("body-parser");
 
+/*
 const ad = new AD({
   url: "ldaps://192.168.145.10",
   user: "admin.mirgo@mirgo.local",
   pass: "Noviembre.1988",
 });
+*/
 
 app.engine(".ejs", require("ejs").__express);
 app.set("view engine", "ejs");
@@ -15,9 +18,10 @@ app.set("views", "./views");
 /**
  * Redirección de las páginas
  */
+/*
 app.get("/", (req, res) => {
   res.render("index");
-  /*
+ 
   ad.user()
     .get()
     .then((users) => {
@@ -27,13 +31,21 @@ app.get("/", (req, res) => {
       console.log("Error getting users:", err);
     });
     */
-  /*
+/*
   ad.user("edu")
     .disable()
     .catch((err) => {
       console.log("Error al cambiar la contraseña:", err);
+         
     });
     */
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use("/", require("./routers/views"));
+
+/*
+  const ad = require("./config/connectionAD");
   ad.user()
     .add({
       userName: "pruebanodejs",
@@ -47,6 +59,7 @@ app.get("/", (req, res) => {
       console.log("Error al crear el usuario:", err);
     });
 });
+*/
 
 app.set("port", process.env.PORT || 8100);
 
