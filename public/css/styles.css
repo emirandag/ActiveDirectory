@@ -1,0 +1,15 @@
+h1 {
+  color: firebrick;
+}
+
+#form {
+  background-color: darkslategrey;
+  width: 40%;
+  color: whitesmoke;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+form {
+  width: 80%;
+}

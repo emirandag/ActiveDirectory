@@ -6,4 +6,10 @@ const ad = new AD({
   pass: "Noviembre.1988",
 });
 
+if (ad) {
+  console.log("Conectado con Active Directory");
+} else {
+  console.log("Error al conectar con Active Directory");
+}
+
 module.exports = ad;

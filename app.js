@@ -2,7 +2,9 @@ const express = require("express");
 //const AD = require("ad");
 const app = express();
 const bodyParser = require("body-parser");
-
+const flash = require("connect-flash");
+const session = require('express-session');
+const expressLayouts = require("express-ejs-layouts");
 /*
 const ad = new AD({
   url: "ldaps://192.168.145.10",
@@ -40,6 +42,15 @@ app.get("/", (req, res) => {
     });
     */
 
+app.use(expressLayouts);
+app.use("/public", express.static("./public"));
+app.use(flash());
+app.use(session({
+  secret: "somerandonstuffs",
+  name: 'sessio_user',
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/", require("./routers/views"));

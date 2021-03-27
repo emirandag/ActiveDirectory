@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../public/css/styles.css" />
+    <title></title>
+    <script type="text/javascript">
+      function mostrarPassword() {
+        var cambio = document.getElementById("txtPassword");
+        if (cambio.type == "password") {
+          cambio.type = "text";
+          $(".icon").removeClass("fa fa-eye-slash").addClass("fa fa-eye");
+        } else {
+          cambio.type = "password";
+          $(".icon").removeClass("fa fa-eye").addClass("fa fa-eye-slash");
+        }
+      }
+
+      $(document).ready(function () {
+        //CheckBox mostrar contraseña
+        $("#ShowPassword").click(function () {
+          $("#Password").attr(
+            "type",
+            $(this).is(":checked") ? "text" : "password"
+          );
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="text-center">
+      <h1>Active Directory</h1>
+    </div>
+    <% if (locals.messages) {
+      if (messages.error) { %>
+          <script>
+          window.alert('<%= messages.error %>');
+          </script>
+      <% } else if (messages.success) { %>
+          <script>
+              window.alert('<%= messages.success %>');
+          </script>
+   <% } else if (messages.info) { %>
+      <div class="col-md-10 col-md-offset-1 alert alert-info"><%= messages.info %></div>
+   <% }
+  } %>
+    <div><%- body %></div>
+  </body>
+</html>
